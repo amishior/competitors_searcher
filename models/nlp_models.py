@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+"""Model call wrappers.
+
+IMPORTANT:
+- Replace the stub implementations with your real emb_call / rerank_call.
+- Keep function signatures stable for pipeline modules.
+"""
+
+from typing import Any, Dict, List
+import numpy as np
+
+def emb_call(text: str) -> List[float]:
+    # ---- STUB ----
+    # Replace with your DashScope/Qwen embedding call.
+    # Here we generate a deterministic pseudo-embedding for dev only.
+    rs = np.random.RandomState(abs(hash(text)) % (2**32))
+    v = rs.normal(size=(1024,)).astype("float32")
+    return v.tolist()
+
+def rerank_call(user_query: str, documents: List[str], model_name: str = "qwen3-rerank", top_k: int = 100) -> List[Dict[str, Any]]:
+    # ---- STUB ----
+    # Replace with your DashScope/Qwen rerank call.
+    # Here we return a dummy score based on length similarity.
+    out = []
+    qlen = max(len(user_query), 1)
+    for i, d in enumerate(documents):
+        score = 1.0 - abs(len(d) - qlen) / max(len(d), qlen, 1)
+        out.append({"index": i, "score": float(score)})
+    out.sort(key=lambda x: x["score"], reverse=True)
+    return out[: min(top_k, len(out))]
