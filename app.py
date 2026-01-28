@@ -24,7 +24,7 @@ app = FastAPI(
 )
 
 # =========================
-# DashVector 配置
+# DashVector
 # =========================
 DASHVECTOR_COLLECTION = DASHVECTOR_COLLECTION_
 DASHVECTOR_API_KEY = DASHVECTOR_API_KEY_
@@ -68,7 +68,7 @@ def _read_latest_meta() -> Dict[str, Any]:
     return fields
 
 # =========================
-# Logging middleware (safe: does not consume response body)
+# Logging middleware
 # =========================
 class AccessLogMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next):
