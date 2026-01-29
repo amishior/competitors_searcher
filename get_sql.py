@@ -19,7 +19,6 @@ _DEV_SINK_CSV = os.getenv("DEV_SINK_CSV", "parsed_output.csv")
 def _load_dataframe(sql: str) -> pd.DataFrame:
     if _DEV_SOURCE_CSV and os.path.exists(_DEV_SOURCE_CSV):
         return pd.read_csv(_DEV_SOURCE_CSV)
-    # default empty frame with expected columns
     return pd.DataFrame(columns=[
         "product_id","company","product_name","channel","track","summary",
         "labels","features","summary_coverage","summary_liability",
@@ -27,5 +26,4 @@ def _load_dataframe(sql: str) -> pd.DataFrame:
     ])
 
 def write_dataframe_replace(df: pd.DataFrame, table_name: Optional[str] = None) -> None:
-    # Replace semantics in DB land. For dev we overwrite a CSV.
     df.to_csv(_DEV_SINK_CSV, index=False, encoding="utf_8_sig")
