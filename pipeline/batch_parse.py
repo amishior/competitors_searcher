@@ -117,14 +117,12 @@ def _fail_task(task_id: str, error: str):
 
 def _run_parse_job():
     logger.info("[Pipeline] Step1: parse batch start")
-    # you can replace SQL_SOURCE with your real SQL file content as needed
     sql_path = "sql_test.txt"
     with open(sql_path, "r", encoding="utf-8") as f:
         sql = f.read()
     df = _load_dataframe(sql)
 
     rows = []
-    # prefer column name summary or product_text
     text_col = "summary" if "summary" in df.columns else ("product_text" if "product_text" in df.columns else None)
     if not text_col:
         raise RuntimeError("Input DataFrame missing text column: expected 'summary' or 'product_text'")
