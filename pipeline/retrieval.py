@@ -255,7 +255,6 @@ def _get_product_row(product_id: str) -> pd.Series:
 # ========================
 def _build_filter(track: str, field: str, selected_company: List[str], selected_channel: List[str]) -> str:
     clauses = []
-    # keep meta out, but only if index has is_meta on business docs
     clauses.append("is_meta != 1")
     clauses.append(f"track = {_sql_quote(track)}")
     clauses.append(f"field = {_sql_quote(field)}")
