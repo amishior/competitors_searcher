@@ -33,7 +33,7 @@ class JsonLikeFormatter(logging.Formatter):
             "logger": record.name,
             "msg": record.getMessage(),
         }
-        # inject extra fields if any
+
         extra = getattr(record, "extra", None)
         if isinstance(extra, dict):
             base.update(extra)
@@ -55,7 +55,7 @@ def get_logger(name: str = "app") -> logging.Logger:
 
     fmt = JsonLikeFormatter()
 
-    # file handler (rotate daily, keep 14 days)
+
     fh = TimedRotatingFileHandler(
         filename=log_file,
         when="D",
@@ -66,7 +66,7 @@ def get_logger(name: str = "app") -> logging.Logger:
     fh.setFormatter(fmt)
     fh.setLevel(getattr(logging, LOG_LEVEL.upper(), logging.INFO))
 
-    # console handler
+
     sh = logging.StreamHandler(sys.stdout)
     sh.setFormatter(fmt)
     sh.setLevel(getattr(logging, LOG_LEVEL.upper(), logging.INFO))
@@ -74,7 +74,7 @@ def get_logger(name: str = "app") -> logging.Logger:
     logger.addHandler(fh)
     logger.addHandler(sh)
 
-    logger._configured = True  # type: ignore[attr-defined]
+    logger._configured = True
     return logger
 
 __all__ = ["get_logger", "_kv"]
