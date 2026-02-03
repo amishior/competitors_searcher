@@ -48,7 +48,7 @@ COLLECTION_NAME = os.getenv("DASHVECTOR_COLLECTION", "competitor_products_dev")
 # 批量写入
 BATCH_DOCS = int(os.getenv("DASHVECTOR_UPSERT_BATCH", "64"))
 
-# Encoder 模式：
+# Encoder 模式
 TRAIN_ENCODER = int(os.getenv("TRAIN_ENCODER", "0"))
 
 # meta doc 配置
@@ -242,7 +242,7 @@ def main():
                     "ingest_dt": ingest_dt,
                     "build_id": build_id,
                     "data_version": data_version,
-                    "is_meta": 0,  # ✅ ensure business docs have is_meta=0
+                    "is_meta": 0,
                 },
             )
             buffer.append(doc)
