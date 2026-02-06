@@ -1,11 +1,3 @@
-# -*- coding: utf-8 -*-
-"""Model call wrappers.
-
-IMPORTANT:
-- Replace the stub implementations with your real emb_call / rerank_call.
-- Keep function signatures stable for pipeline modules.
-"""
-
 from typing import Any, Dict, List
 import numpy as np
 

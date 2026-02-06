@@ -1,13 +1,3 @@
-# -*- coding: utf-8 -*-
-"""SQL helpers.
-
-Replace these with your real DB accessors:
-- _load_dataframe(sql: str) -> DataFrame
-- write_dataframe_replace(df: DataFrame, table_name: str = ..., schema: str = ...) -> None
-
-The stubs below read/write local CSV for dev.
-"""
-
 from __future__ import annotations
 from typing import Optional
 import os
