@@ -1,8 +1,3 @@
-# -*- coding: utf-8 -*-
-"""Centralized settings.
-Prefer env vars in production; these defaults are for local dev.
-"""
-
 import os
 
 # DashVector
